@@ -1,20 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-class TabPane extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            defaultActive: props.defaultActive,
-            active: props.active,
-            tab: props.tab,
-            key: props.key
-        }
+module.exports = class TabNav extends Component {
+    static propTypes = {
+        
+        classPrefix: PropTypes.string,
+        panels: PropTypes.node,
+        activeIndex: PropTypes.number,
+        onTabClick: PropTypes.func
+    };
+
+    getTabs = () => {
+        const { panels, classPrefix, activeIndex } = this.props
     }
-    onActive = (v) => {
-        this.setState({
-            key: v
-        })
-    }
+    
     render() {
         const { key, tab, contain, defaultActive, active } = this.state
         return <div active={key}>

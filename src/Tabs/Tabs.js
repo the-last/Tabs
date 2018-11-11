@@ -1,36 +1,105 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes, cloneElement } from 'react'
+import style from './style/tabs.scss'
+import TabNav from './TabNav.js'
+import TabContent from './TabContent.js'
 
-class TabPane extends Component {
+module.exports = class Tabs extends Component {
+    static propTypes = {
+        className: PropTypes.string,
+        // 统一样式前缀
+        classPrefix: PropTypes.string,
+        children: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.node
+        ]),
+        defaultActiveIndex: PropTypes.number,
+        activeIndex: PropTypes.number,
+        onChange: PropTypes.func
+    };
+    static defaultProps = {
+        classPrefix: 'tabs',
+        onChange: () => { }
+    };
+
     constructor(props) {
         super(props)
-        this.state = {
-            defaultActive: props.defaultActive,
-            active: props.active,
-            tab: props.tab,
-            key: props.key
+        
+        // 方法banding
+        this.handleTabClick = this.handleTabClick.bind(this)
+        const { activeIndex, defaultActiveIndex } = this.props
+        let activeIndex_;
+        if(activeIndex) {
+            activeIndex_ = activeIndex
+        } else if (defaultActiveIndex) {
+            activeIndex_ = defaultActiveIndex
         }
-    }
-    onActive = (v) => {
+        
+        this.state = {
+            activeIndex: activeIndex_,
+            prevIndex: activeIndex_,
+
+        }
+
+    };
+    
+    componentWillReceiveProps = (nextProps) => {
+      if ('activeIndex' in nextProps) {
         this.setState({
-            key: v
+            activeIndex: nextProps.activeIndex
         })
+      }
     }
-    render() {
-        const { key, tab, contain, defaultActive, active } = this.state
-        return <div active={key}>
-            <span
-                className={defaultActive ? "" : active ? "" : ""}
-                onChange={this.props.onChange}
+
+    handleTabClick(activeIndex) {
+        const prevIndex = this.state.activeIndex
+        
+        if (this.state.activeIndex !== activeIndex && 'defaultActiveIndex' in this.props) {
+            this.setState({
+                activeIndex,
+                prevIndex
+            });
+
+            this.props.onChange({activeIndex, prevIndex})
+        }
+
+    }
+
+    renderTabNav() {
+        const { classPrefix, children } = this.props;
+        return (
+            <TabNav
+                key="tabBar"
+                classPrefix={classPrefix}
+                onTabClick={this.handleTabClick}
+                panels={children}
+                activeIndex={this.state.activeIndex}   
             >
-                {tab}
-
-            </span>
-
-            <div>
-                {contain}
-            </div>
-
-        </div>
+            </TabNav>
+        )
     }
 
+    renderTabContent() {
+        const { classPrefix, children } = this.props;
+        return (
+            <TabContent
+                key="tabBar"
+                classPrefix={classPrefix}
+                panels={children}
+                activeIndex={this.state.activeIndex}
+            >
+            </TabContent>
+        )
+    }
+    
+    render() {
+        const { className } = this.props;
+        const classes = className + ' ui-tabs';
+
+        return (
+            <div className={classes}>
+                {this.renderTabNav()}
+                {this.renderTabContent()}
+            </div>
+        )
+    }
 }
