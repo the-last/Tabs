@@ -1,0 +1,51 @@
+.ui-tabs {
+    font-size: 16px;
+    background-color: white;
+    
+}
+
+$contentColor: #303030;
+$activeColor: #1296DA;
+$bottomlineColor: #1296DA;
+
+@mixin tab($color) {
+    border-color: $color;
+    color: $color;
+    border-radius: 1px;
+    padding: 4px;
+    margin: 0px;
+    display: inline-block;
+    width: auto;
+    cursor: pointer;
+}
+
+.tabs {
+    &-bar {
+        display: block;
+        width: 100%;
+        overflow: auto;
+        border-bottom: 1px solid $bottomlineColor;
+    }
+
+    &-tab {
+        @include tab(gray);
+    }
+
+    &-active {
+        @include tab($activeColor);
+        border-bottom: 2px solid $activeColor;
+        transition: 0s border-bottom-color 0.2s;
+    }
+
+    &-disabled {
+        @include tab(rgba(80,80,80,.5));
+        cursor: not-allowed;
+    }
+
+    &-content {
+        border-top: 2px solid $contentColor;
+        font-size: 32px;
+        color: $contentColor;
+    }
+}
+

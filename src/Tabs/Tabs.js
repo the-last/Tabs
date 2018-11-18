@@ -1,9 +1,10 @@
-import React, { Component, PropTypes, cloneElement } from 'react'
-import style from './style/tabs.scss'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import './style/tabs.scss'
 import TabNav from './TabNav.js'
 import TabContent from './TabContent.js'
 
-module.exports = class Tabs extends Component {
+export default class Tabs extends Component {
     static propTypes = {
         className: PropTypes.string,
         // 统一样式前缀
@@ -82,7 +83,7 @@ module.exports = class Tabs extends Component {
         const { classPrefix, children } = this.props;
         return (
             <TabContent
-                key="tabBar"
+                key="tabContent"
                 classPrefix={classPrefix}
                 panels={children}
                 activeIndex={this.state.activeIndex}
@@ -93,7 +94,7 @@ module.exports = class Tabs extends Component {
     
     render() {
         const { className } = this.props;
-        const classes = className + ' ui-tabs';
+        const classes = className ? className + ' ui-tabs' : 'ui-tabs';
 
         return (
             <div className={classes}>
