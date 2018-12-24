@@ -7,6 +7,7 @@
 $contentColor: #303030;
 $activeColor: #1296DA;
 $bottomlineColor: #1296DA;
+$hoverColor: #87c1ea;;
 
 @mixin tab($color) {
     border-color: $color;
@@ -16,6 +17,7 @@ $bottomlineColor: #1296DA;
     margin: 0px;
     display: inline-block;
     width: auto;
+    box-sizing: border-box;
     cursor: pointer;
 }
 
@@ -28,11 +30,19 @@ $bottomlineColor: #1296DA;
     }
 
     &-tab {
+        &:hover {
+            color: $hoverColor;
+            border-bottom: 2px solid $hoverColor;
+        }
         @include tab(gray);
     }
 
     &-active {
         @include tab($activeColor);
+        &:hover {
+            color: $activeColor !important;
+            border-bottom: 2px solid $activeColor !important;
+        }
         border-bottom: 2px solid $activeColor;
         transition: 0s border-bottom-color 0.2s;
     }

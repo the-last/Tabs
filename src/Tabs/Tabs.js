@@ -97,7 +97,7 @@ export default class Tabs extends Component {
         const classes = className ? className + ' ui-tabs' : 'ui-tabs';
 
         return (
-            <div className={classes}>
+            <div className={classes} {...this.props}>
                 {this.renderTabNav()}
                 {this.renderTabContent()}
             </div>
