@@ -33,7 +33,7 @@ export default class TabContent extends Component {
             
             return isActive ? (
                 <div
-
+                    style={{overflow: 'auto'}}
                     key={`tabpane-${order}`}
                 >
                     {child.props.children}

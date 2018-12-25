@@ -56,17 +56,27 @@ class App extends Component {
       <div className="App">
         
         <div>
-          <Tabs style={{fontSize: '24px'}} defaultActiveIndex={2} onChange={this.callback} position={position}>
+          <Tabs
+            style={{fontSize: '24px'}} 
+            defaultActiveIndex={2} 
+            onChange={this.callback} 
+            position={position}
+          >
             <TabPane tab="首页" order="1" >Content of Tab Pane 1</TabPane>
             <TabPane tab="新年" order="2" >
-            <h3>Entry New Year ----</h3>
-            <span className="timedown small">What time is it ? </span>
-            <span className="timedown">{hour}</span>
-            <span className="timedown middle">:{min}</span>
-            <span className="timedown small">:{s}</span>
+              <h3>Entry New Year ----</h3>
+              <span className="timedown small">What time is it ? </span>
+              <span className="timedown">{hour}</span>
+              <span className="timedown middle">:{min}</span>
+              <span className="timedown small">:{s}</span>
             </TabPane>
             <TabPane tab="其他" order="3" >Content of Tab Pane 3</TabPane>
-            <TabPane tab="位置" order="4" ><button onClick={this.switchPosition} style={{fontSize: '16px'}}>{position === 'top' ? '向左': '向上'}</button></TabPane>
+            <TabPane tab="位置" order="4" >
+              <button
+                onClick={this.switchPosition} 
+                style={{fontSize: '16px'}}>{position === 'top' ? '向左': '向上'}
+              </button>
+            </TabPane>
           </Tabs>
         </div>
       </div>
