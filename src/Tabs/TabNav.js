@@ -38,6 +38,9 @@ export default class TabNav extends Component {
                 [`${classPrefix}-active`]: activeIndex === order,
                 [`${classPrefix}-disabled`]: child.props.disabled                
             })
+            let classtab = classnames({
+                [`${classPrefix}-bar-line-${position}`]: true
+            })
 
             let events = {}
             if(!child.props.disabled) {
@@ -61,6 +64,7 @@ export default class TabNav extends Component {
                    {...ref}
                 >
                     {child.props.tab}
+                    <div className={classtab}></div>
                 </li>
             )
 
@@ -68,10 +72,10 @@ export default class TabNav extends Component {
     }
     
     render() {
-        const { classPrefix } = this.props
+        const { classPrefix, position } = this.props
         
         const rootClasses = classnames({
-            [`${classPrefix}-bar`]: true
+            [`${classPrefix}-bar`]: true,
         })
 
         const classes = classnames({
@@ -83,9 +87,10 @@ export default class TabNav extends Component {
                 className={rootClasses}
                 role = "tablist"
             >
-                <ul className={classes}>
+                <div className={classes}>
                     {this.getTabs()}
-                </ul>
+                </div>
+                
             </div>
         )
     }

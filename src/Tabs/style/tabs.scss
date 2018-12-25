@@ -23,6 +23,7 @@ $hoverColor: #87c1ea;;
     width: 70px;
     box-sizing: border-box;
     cursor: pointer;
+    transition: color .3s cubic-bezier(.645, .045, .355, 1);
 }
 
 .ui-tabs-nav-left {
@@ -46,8 +47,34 @@ $hoverColor: #87c1ea;;
 .tabs {
     &-bar {
         display: block;
+        position: relative;
         width: 100%;
         overflow: auto;
+    }
+
+    &-bar-line {
+        display: block;
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        
+        &-left {
+            right: 0px;
+            top: 0px;
+        }
+        &-top {
+            bottom: 0px;
+            left: 0px;
+        }
+        &-right {
+            left: 0px;
+            top: 0px;
+        }
+        &-bottom {
+            top: 0px;
+            left: 0px; 
+        }
+
     }
 
     &-tab {
@@ -65,7 +92,6 @@ $hoverColor: #87c1ea;;
     &-active {
         @include tab($activeColor);
         border-bottom: 2px solid rgba(250,250,250,1);
-        transition: 0s border-bottom-color 0.2s;
         &:hover {
             color: $activeColor;
             border-bottom: 2px solid $activeColor;
