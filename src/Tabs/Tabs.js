@@ -9,6 +9,7 @@ export default class Tabs extends Component {
         className: PropTypes.string,
         // 统一样式前缀
         classPrefix: PropTypes.string,
+        position: PropTypes.string,
         children: PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.node),
             PropTypes.node
@@ -19,6 +20,7 @@ export default class Tabs extends Component {
     };
     static defaultProps = {
         classPrefix: 'tabs',
+        position: 'top',
         onChange: () => { }
     };
 
@@ -66,14 +68,15 @@ export default class Tabs extends Component {
     }
 
     renderTabNav() {
-        const { classPrefix, children } = this.props;
+        const { classPrefix, children, position } = this.props;
         return (
             <TabNav
                 key="tabBar"
                 classPrefix={classPrefix}
                 onTabClick={this.handleTabClick}
                 panels={children}
-                activeIndex={this.state.activeIndex}   
+                activeIndex={this.state.activeIndex}
+                position={position}
             >
             </TabNav>
         )
@@ -93,13 +96,17 @@ export default class Tabs extends Component {
     }
     
     render() {
-        const { className } = this.props;
+        const { className, position } = this.props;
         const classes = className ? className + ' ui-tabs' : 'ui-tabs';
 
         return (
             <div className={classes} {...this.props}>
-                {this.renderTabNav()}
-                {this.renderTabContent()}
+                <div className={position === 'left' ? 'ui-tabs-nav-left' : ''}>
+                    {this.renderTabNav()}
+                </div>
+                <div className={position === 'left' ? 'ui-tabs-content-left' : ''}>
+                    {this.renderTabContent()}
+                </div>
             </div>
         )
     }

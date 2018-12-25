@@ -23,7 +23,7 @@ export default class TabNav extends Component {
     };
     
     getTabs () {
-        const { panels, classPrefix, activeIndex  } = this.props 
+        const { panels, classPrefix, activeIndex, position  } = this.props 
         return React.Children.map(panels, child => {
             
             if (!child || typeof child === 'string') {
@@ -33,6 +33,7 @@ export default class TabNav extends Component {
             const order = parseInt(child.props.order, 10)
 
             let classes = classnames({
+                [`${classPrefix}-tab-left`]: position === 'left',
                 [`${classPrefix}-tab`]: true,
                 [`${classPrefix}-active`]: activeIndex === order,
                 [`${classPrefix}-disabled`]: child.props.disabled                

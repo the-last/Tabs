@@ -1,7 +1,11 @@
+ul,li,div {
+    margin: 0px;
+    padding: 0px;
+}
 .ui-tabs {
     font-size: 16px;
     background-color: white;
-    
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft Yahei', 'WenQuanYi Micro Hei', Arial, Verdana, sans-serif;
 }
 
 $contentColor: #303030;
@@ -16,9 +20,27 @@ $hoverColor: #87c1ea;;
     padding: 4px;
     margin: 0px;
     display: inline-block;
-    width: auto;
+    width: 70px;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.ui-tabs-nav-left {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    float: left;
+    white-space: normal;
+    width: 180px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ui-tabs-content-left {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 180px;
 }
 
 .tabs {
@@ -26,25 +48,28 @@ $hoverColor: #87c1ea;;
         display: block;
         width: 100%;
         overflow: auto;
-        border-bottom: 1px solid $bottomlineColor;
     }
 
     &-tab {
+        @include tab(gray);
+        border-bottom: 2px solid rgba(250,250,250,1);
         &:hover {
             color: $hoverColor;
             border-bottom: 2px solid $hoverColor;
         }
-        @include tab(gray);
+    }
+    &-tab-left {
+        display: block;
     }
 
     &-active {
         @include tab($activeColor);
-        &:hover {
-            color: $activeColor !important;
-            border-bottom: 2px solid $activeColor !important;
-        }
-        border-bottom: 2px solid $activeColor;
+        border-bottom: 2px solid rgba(250,250,250,1);
         transition: 0s border-bottom-color 0.2s;
+        &:hover {
+            color: $activeColor;
+            border-bottom: 2px solid $activeColor;
+        }
     }
 
     &-disabled {
@@ -53,7 +78,6 @@ $hoverColor: #87c1ea;;
     }
 
     &-content {
-        border-top: 2px solid $contentColor;
         font-size: 32px;
         color: $contentColor;
     }
