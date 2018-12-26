@@ -11,10 +11,7 @@ ul,li,div {
 $contentColor: #303030;
 $activeColor: #1296DA;
 $bottomlineColor: #1296DA;
-$hoverColor: #87c1ea;
-
-
-
+$hoverColor: #87c1ea;;
 
 @mixin tab($color) {
     border-color: $color;
@@ -26,113 +23,31 @@ $hoverColor: #87c1ea;
     width: 70px;
     box-sizing: border-box;
     cursor: pointer;
-    transition: color .3s cubic-bezier(.645, .045, .355, 1);
 }
 
-@mixin tab-posi(){
-    display: block;
-    height: 70px;
-    line-height: 70px;
-    border: 0px;
-}
-
-@mixin nav-border($ps, $color){
-    @if $ps == 'top' {
-        border-bottom: 2px solid $color;
-    }
-    @if $ps == 'right' {
-        border-left: 2px solid $color;
-    }
-    @if $ps == 'left' {
-        border-right: 2px solid $color;
-    }
-    @if $ps == 'bottom' {
-        border-top: 2px solid $color;
-    }
-}
-
-@mixin tab-active($ps) {
-    
-    @include nav-border($ps, $bottomlineColor);
-
-    &:hover {
-        color: $activeColor;
-        @include nav-border($ps, $activeColor);
-    }
-}
-
-.ui-tabs-nav {
+.ui-tabs-nav-left {
     display: block;
     overflow: hidden;
     clear: both;
+    float: left;
     white-space: normal;
     width: 180px;
     padding: 0px;
     margin: 0px;
-    &-top {
-        display: block;
-    }
-    &-left {
-        float: left;
-    }
-    &-right {
-        float: right;
-    }
-    &-bottom {
-        display: block;
-    }
 }
 
-.ui-tabs-content {
+.ui-tabs-content-left {
     display: block;
     margin: 0px;
     padding: 0px;
-    
-    &-top {
-        display: block;
-    }
-    &-left {
-        margin-left: 180px;
-    }
-    &-right {
-        margin-right: 180px;
-    }
-    &-bottom {
-        display: block;
-    }
+    margin-left: 180px;
 }
 
 .tabs {
     &-bar {
         display: block;
-        position: relative;
         width: 100%;
-        overflow: hidden;
-    }
-
-    &-bar-line {
-        display: block;
-        position: absolute;
-        width: 2px;
-        height: 100%;
-        
-        &-left {
-            right: 0px;
-            top: 0px;
-        }
-        &-top {
-            bottom: 0px;
-            left: 0px;
-        }
-        &-right {
-            left: 0px;
-            top: 0px;
-        }
-        &-bottom {
-            top: 0px;
-            left: 0px; 
-        }
-
+        overflow: auto;
     }
 
     &-tab {
@@ -144,43 +59,17 @@ $hoverColor: #87c1ea;
         }
     }
     &-tab-left {
-        @include tab-posi();
-        border-bottom: 0px;
-        border-right: 2px solid rgba(250,250,250,1);
-        &:hover {
-            color: $hoverColor;
-            border-bottom: 0px;
-            border-right: 2px solid $hoverColor;
-        }
-    }
-    &-tab-right {
-        @include tab-posi();
-        border-bottom: 0px;
-        border-left: 2px solid rgba(250,250,250,1);
-        &:hover {
-            color: $hoverColor;
-            border-bottom: 0px;
-            border-left: 2px solid $hoverColor;
-        }
-    }
-    &-tab-top {
-        display: inline-block;
-    }
-    &-tab-bottom {
-        display: inline-block;
+        display: block;
     }
 
-    &-active-top {
-        @include tab-active('top')
-    }
-    &-active-left {
-        @include tab-active('left')
-    }
-    &-active-right {
-        @include tab-active('right')
-    }
-    &-active-bottom {
-        @include tab-active('bottom')
+    &-active {
+        @include tab($activeColor);
+        border-bottom: 2px solid rgba(250,250,250,1);
+        transition: 0s border-bottom-color 0.2s;
+        &:hover {
+            color: $activeColor;
+            border-bottom: 2px solid $activeColor;
+        }
     }
 
     &-disabled {

@@ -101,10 +101,10 @@ export default class Tabs extends Component {
 
         return (
             <div className={classes} {...this.props}>
-                <div className={`ui-tabs-nav-${position}`}>
+                <div className={position === 'left' ? 'ui-tabs-nav-left' : ''}>
                     {this.renderTabNav()}
                 </div>
-                <div className={`ui-tabs-content-${position}`}>
+                <div className={position === 'left' ? 'ui-tabs-content-left' : ''}>
                     {this.renderTabContent()}
                 </div>
             </div>
