@@ -1,17 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style/tabs.scss'
-
-function classnames (obj) {
-    let classStr= ''
-    
-    Object.keys(obj).forEach((v) => {
-        if(obj[v]){
-            classStr += ` ${v}`
-        }
-    })
-    return classStr
-}
+import { classesname } from './utils'
 
 export default class TabContent extends Component {
     static propTypes = {
@@ -44,7 +34,7 @@ export default class TabContent extends Component {
 
     render() {
         const { classPrefix } = this.props
-        const classes = classnames({
+        const classes = classesname({
             [`${classPrefix}-content`]: true
         })
 

@@ -2,16 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style/tabs.scss'
-function classnames(obj) {
-    let classStr = ''
-    Object.keys(obj).forEach(v => {
-        if (obj[v]) {
-            classStr += ` ${v}`
-        }
-    })
-
-    return classStr
-}
+import { classesname } from './utils'
 
 export default class TabNav extends Component {
     static propTypes = {
@@ -32,11 +23,14 @@ export default class TabNav extends Component {
 
             const order = parseInt(child.props.order, 10)
 
-            let classes = classnames({
-                [`${classPrefix}-tab-left`]: position === 'left',
+            let classes = classesname({
+                [`${classPrefix}-tab-${position}`]: true,
                 [`${classPrefix}-tab`]: true,
-                [`${classPrefix}-active`]: activeIndex === order,
+                [`${classPrefix}-active-${position}`]: activeIndex === order,
                 [`${classPrefix}-disabled`]: child.props.disabled                
+            })
+            let classtab = classesname({
+                [`${classPrefix}-bar-line-${position}`]: true
             })
 
             let events = {}
@@ -61,6 +55,7 @@ export default class TabNav extends Component {
                    {...ref}
                 >
                     {child.props.tab}
+                    <div className={classtab}></div>
                 </li>
             )
 
@@ -70,11 +65,11 @@ export default class TabNav extends Component {
     render() {
         const { classPrefix } = this.props
         
-        const rootClasses = classnames({
-            [`${classPrefix}-bar`]: true
+        const rootClasses = classesname({
+            [`${classPrefix}-bar`]: true,
         })
 
-        const classes = classnames({
+        const classes = classesname({
             [`${classPrefix}-nav`]: true
         })
         
@@ -83,9 +78,10 @@ export default class TabNav extends Component {
                 className={rootClasses}
                 role = "tablist"
             >
-                <ul className={classes}>
+                <div className={classes}>
                     {this.getTabs()}
-                </ul>
+                </div>
+                
             </div>
         )
     }
