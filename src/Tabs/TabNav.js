@@ -25,7 +25,6 @@ export default class TabNav extends Component {
 
             let classes = classesname({
                 [`${classPrefix}-tab-${position}`]: true,
-                [`${classPrefix}-tab`]: true,
                 [`${classPrefix}-active-${position}`]: activeIndex === order,
                 [`${classPrefix}-disabled`]: child.props.disabled                
             })

@@ -21,7 +21,7 @@ class ReactTabs extends Component {
             </TabPane>
             <TabPane tab="其他" order="3" >Content of Tab Pane 3</TabPane>
             <TabPane tab="位置" order="4" >
-              <div style={{width: '500px', margin: 'auto'}}>
+              <div>
                 <DemoFour></DemoFour>
               </div>
             </TabPane>

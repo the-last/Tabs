@@ -101,11 +101,11 @@ export default class Tabs extends Component {
 
         return (
             <div className={classes} {...this.props}>
-                <div className={`ui-tabs-nav-${position}`}>
-                    {this.renderTabNav()}
+                <div className={`ui-tabs-${position === 'bottom' ? 'content' : 'nav'}-${position}`}>
+                    { position === 'bottom' ? this.renderTabContent() : this.renderTabNav() }
                 </div>
-                <div className={`ui-tabs-content-${position}`}>
-                    {this.renderTabContent()}
+                <div className={`ui-tabs-${position === 'bottom' ? 'nav' : 'content'}-${position}`}>
+                    { position === 'bottom' ? this.renderTabNav() : this.renderTabContent() }
                 </div>
             </div>
         )

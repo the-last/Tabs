@@ -24,10 +24,10 @@ class DemoFour extends Component {
     return (
       <div className="App">
         <h3>
-          <button onClick={this.switchPosition.bind(this, 'top')} style={{fontSize: '16px'}}>{'向上'} </button>
-          <button onClick={this.switchPosition.bind(this, 'left')} style={{fontSize: '16px'}}>{'向左'} </button>
-          <button onClick={this.switchPosition.bind(this, 'right')} style={{fontSize: '16px'}}>{'向右'} </button>
-          <button onClick={this.switchPosition.bind(this, 'bottom')} style={{fontSize: '16px'}}>{'向下'} </button>
+          <button onClick={this.switchPosition.bind(this, 'top')} style={{fontSize: '16px'}}>{'上'} </button>
+          <button onClick={this.switchPosition.bind(this, 'left')} style={{fontSize: '16px'}}>{'左'} </button>
+          <button onClick={this.switchPosition.bind(this, 'right')} style={{fontSize: '16px'}}>{'右'} </button>
+          <button onClick={this.switchPosition.bind(this, 'bottom')} style={{fontSize: '16px'}}>{'下'} </button>
         </h3>
         <div>
           <Tabs
@@ -35,7 +35,9 @@ class DemoFour extends Component {
             onChange={this.callback} 
             position={position}
           >
-            <TabPane tab="Tab-1" order="1" >Content of Tab Pane 1</TabPane>
+            <TabPane tab="Tab-1" order="1" >
+              <span style={{fontSize: '52px', paddingBottom: '40px'}}>写一个大</span>
+            </TabPane>
             <TabPane tab="Tab-2" order="2" >
               <span>Content- of tab pane 2</span>
             </TabPane>
