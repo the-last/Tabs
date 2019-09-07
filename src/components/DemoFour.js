@@ -22,7 +22,7 @@ class DemoFour extends Component {
     const { position } = this.state
     
     return (
-      <div className="App">
+      <div className="App" style={{ padding: '20px' }}>
         <h3>
           <button onClick={this.switchPosition.bind(this, 'top')} style={{fontSize: '16px'}}>{'上'} </button>
           <button onClick={this.switchPosition.bind(this, 'left')} style={{fontSize: '16px'}}>{'左'} </button>
